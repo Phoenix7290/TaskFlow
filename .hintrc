@@ -1,0 +1,9 @@
+{
+  "connector": {
+    "name": "local"
+  },
+  "hints": {
+    "meta-viewport": "off",
+    "meta-charset-utf-8": "off"
+  }
+}
