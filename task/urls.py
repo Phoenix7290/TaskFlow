@@ -26,9 +26,4 @@ urlpatterns = [
     path("<int:pk>/update/", TaskUpdateView.as_view(), name="task-update"),  
     path("<int:pk>/delete/", TaskDeleteView.as_view(), name="task-delete"),
     
-    # teste estático para front
-    path('project/<int:pk>/', ProjectDetailView.as_view(), name='project_detail'),
-    path('project/<int:pk>/delete/', ProjectDeleteView.as_view(), name='project_delete'),
-    path('task/<int:pk>/delete/', TaskDeleteView.as_view(), name='task_delete'),
-     
 ]

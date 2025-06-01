@@ -23,3 +23,10 @@ Um sistema de gerenciamento de tarefas e projetos desenvolvido com Django e Boot
 
 - @Phoenix7290 : Frontend (HTML, CSS, Bootstrap, JavaScript)
 - Hishow: Backend (Django, PostgreSQL)
+
+## Como contribuir
+
+- `git clone https://github.com/Phoenix7290/TaskFlow`
+- `git add .` Para adicionar todas as alterações
+- `git commit -m "comentário_do_commit"` Para salvar localmente no git as alterações
+- `git push origin main` Salvar alterações globalmente para o projeto
