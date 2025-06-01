@@ -16,12 +16,23 @@ Including another URLconf
 """
 
 from django.urls import path
-from .views import TaskListView, TaskDetailView, TaskCreateView, TaskUpdateView, TaskDeleteView
+from .views import (
+    TaskListView, TaskDetailView, TaskCreateView, TaskUpdateView, TaskDeleteView,
+    ProjectListView, ProjectCreateView, ProjectUpdateView, ProjectDeleteView, ProjectDetailView
+)
 
 urlpatterns = [
-    path("", TaskListView.as_view(), name="task-list"),  
-    path("<int:pk>/", TaskDetailView.as_view(), name="task-detail"), 
-    path("create/", TaskCreateView.as_view(), name="task-create"), 
-    path("<int:pk>/update/", TaskUpdateView.as_view(), name="task-update"),  
-    path("<int:pk>/delete/", TaskDeleteView.as_view(), name="task-delete"),
+    # Task URLs
+    path("tasks/", TaskListView.as_view(), name="task_list"),
+    path("tasks/<int:pk>/", TaskDetailView.as_view(), name="task_detail"),
+    path("tasks/create/", TaskCreateView.as_view(), name="task_create"),
+    path("tasks/<int:pk>/update/", TaskUpdateView.as_view(), name="task_update"),
+    path("tasks/<int:pk>/delete/", TaskDeleteView.as_view(), name="task_delete"),
+    
+    # Project URLs
+    path("projects/", ProjectListView.as_view(), name="project_list"),
+    path("projects/create/", ProjectCreateView.as_view(), name="project_create"),
+    path("projects/<int:pk>/", ProjectDetailView.as_view(), name="project_detail"),
+    path("projects/<int:pk>/update/", ProjectUpdateView.as_view(), name="project_update"),
+    path("projects/<int:pk>/delete/", ProjectDeleteView.as_view(), name="project_delete"),
 ]

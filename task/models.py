@@ -22,8 +22,8 @@ class Task(models.Model):
         ('IN_PROGRESS', 'Em Progresso'),
         ('DONE', 'Concluído'),
     ]
-    
-    title = models.CharField(max_length=200)
+
+    title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='tasks')
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='TODO')

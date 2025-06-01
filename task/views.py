@@ -3,6 +3,26 @@ from django.views.generic import ListView, DetailView, DeleteView, CreateView, U
 from .models import Task, Project
 from django.shortcuts import render
 
+# Project List View
+class ProjectListView(ListView):
+    model = Project
+    template_name = "task/project_list.html"
+    context_object_name = "projects"
+
+# Project Create View (optional, but needed for project_list.html links)
+class ProjectCreateView(CreateView):
+    model = Project
+    template_name = "task/project_form.html"
+    fields = ["name", "description"]
+    success_url = reverse_lazy('project_list')
+
+# Project Update View (optional, but aligns with typical CRUD functionality)
+class ProjectUpdateView(UpdateView):
+    model = Project
+    template_name = "task/project_form.html"
+    fields = ["name", "description"]
+    success_url = reverse_lazy('project_list')
+
 class TaskListView(ListView):
     model = Task
     template_name = "task/task_list.html"
@@ -38,4 +58,4 @@ class ProjectDetailView(DetailView):
 class ProjectDeleteView(DeleteView):
     model = Project
     template_name = 'task/project_confirm_delete.html'
-    success_url = reverse_lazy('project-list')
+    success_url = reverse_lazy('project_list')
