@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ object.name }}</h2>
+<p><strong>Descrição:</strong> {{ object.description }}</p>
+<p><strong>Dono:</strong> {{ object.owner.username }}</p>
+<p><strong>Criado em:</strong> {{ object.created_at|date:"d/m/Y H:i" }}</p>
+<h3>Tarefas do Projeto</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Status</th>
+            <th>Categoria</th>
+            <th>Atribuído a</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in object.tasks.all %}
+        <tr>
+            <td>{{ task.title }}</td>
+            <td>{{ task.get_status_display }}</td>
+            <td>{{ task.category.name|default:"Nenhuma" }}</td>
+            <td>{{ task.assigned_to.username|default:"Ninguém" }}</td>
+            <td>
+                <a href="{% url 'task_update' task.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{% url 'task_delete' task.pk %}" class="btn btn-danger btn-sm">Deletar</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5">Nenhuma tarefa neste projeto.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'project_list' %}" class="btn btn-secondary">Voltar</a>
+{% if user == object.owner %}
+    <a href="{% url 'project_update' object.pk %}" class="btn btn-warning">Editar Projeto</a>
+    <a href="{% url 'project_delete' object.pk %}" class="btn btn-danger">Excluir Projeto</a>
+{% endif %}
+{% endblock %}

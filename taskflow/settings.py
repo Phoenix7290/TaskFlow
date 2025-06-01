@@ -54,7 +54,7 @@ ROOT_URLCONF = "taskflow.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -76,9 +76,9 @@ WSGI_APPLICATION = "taskflow.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'nomedobanco',
-        'USER': 'usuario',
-        'PASSWORD': 'senha',
+        'NAME': 'taskflow_db',
+        'USER': 'genericuser',
+        'PASSWORD': 'senhagenerica',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -118,7 +118,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+# Login Redirect
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
